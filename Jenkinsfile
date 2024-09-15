@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     tools {
-        jdk 'jdk22'  // Make sure to have JDK 11 configured in Jenkins
         gradle 'gradle'  // Make sure to have Gradle 7.4 configured in Jenkins
+        jdk
     }
 
     stages {
