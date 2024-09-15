@@ -13,18 +13,30 @@ pipeline {
             }
         }
 
+        stage {
+            steps {
+                withGradle {
+                    sh 'gradle --version'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
+                withGradle {
                 echo 'Building the project...'
-                sh './gradlew build'
+                sh 'gradlew build'
+                }
+
             }
         }
 
         stage('Test') {
             steps {
+                withGradle {
                 echo 'Running tests...'
-                sh './gradlew test'
-            }
+                sh 'gradlew test'
+            }}
         }
 
         stage('Publish Test Results') {
