@@ -1,10 +1,8 @@
 pipeline {
     agent any
-    
     tools {
         gradle 'gradle'  // Make sure to have Gradle 7.4 configured in Jenkins
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -12,7 +10,6 @@ pipeline {
                 checkout scm
             }
         }
-
         stage {
             steps {
                 withGradle {
@@ -20,25 +17,22 @@ pipeline {
                 }
             }
         }
-
         stage('Build') {
             steps {
                 withGradle {
-                echo 'Building the project...'
-                sh 'gradlew build'
+                    echo 'Building the project...'
+                    sh 'gradlew build'
                 }
-
             }
         }
-
         stage('Test') {
             steps {
                 withGradle {
-                echo 'Running tests...'
-                sh 'gradlew test'
-            }}
+                    echo 'Running tests...'
+                    sh 'gradlew test'
+                }
+            }
         }
-
         stage('Publish Test Results') {
             steps {
                 echo 'Publishing test results...'
@@ -46,7 +40,6 @@ pipeline {
             }
         }
     }
-    
     post {
         always {
             echo 'Pipeline finished.'
