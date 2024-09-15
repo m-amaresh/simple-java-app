@@ -21,7 +21,7 @@ pipeline {
             steps {
                 withGradle {
                     echo 'Building the project...'
-                    sh 'gradlew build'
+                    sh 'gradle build'
                 }
             }
         }
@@ -29,14 +29,16 @@ pipeline {
             steps {
                 withGradle {
                     echo 'Running tests...'
-                    sh 'gradlew test'
+                    sh 'gradle test'
                 }
             }
         }
         stage('Publish Test Results') {
             steps {
-                echo 'Publishing test results...'
-                junit '**/build/test-results/test/*.xml'
+                withGradle {
+                    echo 'Publishing test results...'
+                    junit '**/build/test-results/test/*.xml'
+                }
             }
         }
     }
