@@ -3,7 +3,6 @@ pipeline {
     
     tools {
         gradle 'gradle'  // Make sure to have Gradle 7.4 configured in Jenkins
-        jdk
     }
 
     stages {
