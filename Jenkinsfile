@@ -10,7 +10,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage {
+        stage('Tool Check') {
             steps {
                 withGradle {
                     sh 'gradle --version'
